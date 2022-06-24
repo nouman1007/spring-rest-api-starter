@@ -1,5 +1,5 @@
 
-name:owasp zap analysis
+name: owasp zap analysis
 on: [push]
 
 jobs:
