@@ -240,7 +240,12 @@
 			<artifactId>password</artifactId>
 			<version>${madmath03.passwords.version}</version>
 		</dependency>
-
+		<dependency> 
+			<groupId>junit</groupId> 
+			<artifactId>junit</artifactId> 
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
 
 		<!-- Test dependencies -->
 
@@ -337,6 +342,28 @@
 					<executable>true</executable>
 				</configuration>
 			</plugin>
+			<plugin> <groupId>org.jacoco</groupId> 
+			<artifactId>jacoco-maven-plugin</artifactId> 
+			version>0.8.7</version> 
+			<executions>
+				<execution>
+					<id>prepare-agent</id> 
+					<goals> 
+						<goal>prepare-agent</goal> 
+					</goals> 
+				</execution> 
+				<execution> 
+					<id>report</id> 
+					<goals> 
+						<goal>report</goal> 
+					</goals> 
+					<configuration>
+						<formats> <format>XML</format> 
+						</formats> 
+					</configuration> 
+				</execution> 
+			</executions> 
+			</plugin> 
 
 			<plugin>
 				<groupId>com.spotify</groupId>
