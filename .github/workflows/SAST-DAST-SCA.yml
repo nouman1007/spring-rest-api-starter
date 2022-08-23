@@ -1,8 +1,7 @@
-name: Build code, run unit test, run SAST, SCA, DAST security scans for NodeJs App
+name: Build code, run unit test, run SAST, SCA, DAST security scans for App
 on: push
 
 jobs:
-
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
@@ -49,8 +48,8 @@ jobs:
     - run: |
        make bootstrap
        make release
-      echo "Run, Build Application using script"
-    #   ./location_of_script_within_repo/buildscript.sh
+       echo "Run, Build Application using script"
+    # ./location_of_script_within_repo/buildscript.sh
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
