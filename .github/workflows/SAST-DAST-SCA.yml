@@ -1,7 +1,8 @@
-name: Build code, run unit test, run SAST, SCA, DAST security scans for App
+name: Build code, run unit test, run SAST, SCA, DAST security scans for Java App
 on: push
 
 jobs:
+
   analyze:
     name: Analyze
     runs-on: ubuntu-latest
@@ -46,10 +47,8 @@ jobs:
     #   modify them (or add more) to build your code if your project, please refer to the EXAMPLE below for guidance.
 
     # - run: |
-    #    make bootstrap
-    #    make release
-    #    echo "Run, Build Application using script"
-    # ./location_of_script_within_repo/buildscript.sh
+    #   echo "Run, Build Application using script"
+    #   ./location_of_script_within_repo/buildscript.sh
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v2
@@ -65,20 +64,19 @@ jobs:
         continue-on-error: true
         env:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-
-  zap_scan:
-    runs-on: ubuntu-latest
-    needs: security
-    name: Run DAST scan on the web application
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: master
-      - name: ZAP Scan
-        uses: zaproxy/action-baseline@v0.6.1
-        with:
-          docker_name: 'owasp/zap2docker-stable'
-          target: 'http://example.com/'
-          rules_file_name: '.zap/rules.tsv'
-          cmd_options: '-a'
+  # zap_scan:
+  #   runs-on: ubuntu-latest
+  #   needs: security
+  #   name: Run DAST scan on the web application
+  #   steps:
+  #     - name: Checkout
+  #       uses: actions/checkout@v2
+  #       with:
+  #         ref: master
+  #     - name: ZAP Scan
+  #       uses: zaproxy/action-baseline@v0.6.1
+  #       with:
+  #         docker_name: 'owasp/zap2docker-stable'
+  #         target: 'http://example.com/'
+  #         rules_file_name: '.zap/rules.tsv'
+  #         cmd_options: '-a'
