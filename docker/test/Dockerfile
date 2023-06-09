@@ -1,4 +1,4 @@
-FROM php:alpine
+FROM php:8.3.0alpha1-cli-alpine3.18
 
 COPY docker_test.sh /docker_test.sh
 
